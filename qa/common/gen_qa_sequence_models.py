@@ -511,7 +511,6 @@ def create_plan_dynamic_modelfile(models_dir, model_version, max_batch, dtype, s
             opt_shape = opt_shape + [i]
             max_shape = max_shape + [i]
 
-
     profile = builder.create_optimization_profile()
     profile.set_shape("INPUT", min_shape, opt_shape, max_shape)
     if max_shape != 0:
@@ -542,9 +541,6 @@ def create_plan_dynamic_modelfile(models_dir, model_version, max_batch, dtype, s
     builder.destroy()
 
 
-
-
-
 def create_plan_modelfile(
         models_dir, model_version, max_batch, dtype, shape):
 
@@ -555,7 +551,6 @@ def create_plan_modelfile(
         create_plan_dynamic_modelfile(models_dir, model_version, max_batch, dtype, shape)
     else:
         create_plan_fixed_modelfile(models_dir, model_version, max_batch, dtype, shape)
-
 
 
 def create_plan_modelconfig(
