@@ -191,6 +191,14 @@ portions of the model configuration if necessary, such as
 <nvidia::inferenceserver::ModelConfig::cc_model_filenames>`, and
 :cpp:var:`tags <nvidia::inferenceserver::ModelConfig::tags>`.
 
+Specifically, when serving a classification model, :cpp:var:`label_filename
+<nvidia::inferenceserver::ModelOutput::label_filename>` can not be automatically
+derived currently. If you wish to retrieve the labels of your model's output, you will
+need to either create a config.pbtxt file and specify all of the required :cpp:var:`output
+<nvidia::inferenceserver::ModelOutput>` along with your :cpp:var:`label_filename
+<nvidia::inferenceserver::ModelOutput::label_filename>`, or you will need to handle the
+mapping from your model's output to a label in your client code directly.
+
 .. _section-datatypes:
 
 Datatypes
