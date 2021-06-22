@@ -1,0 +1,17 @@
+Triton Inference Server deployed! 
+
+To learn more about the release, try:
+
+  $ helm status {{ .Release.Name }}  # information about running pods and this message
+  $ helm get {{ .Release.Name }}     # get full Kubernetes specification
+
+{{- if contains "NodePort" .Values.service.type }}
+
+To check the health of your Triton Inference Server:
+  
+  $ export TRITON_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath='{.items[0].status.addresses[0].address}')
+  $ export TRITON_HTTP_PORT=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ template "triton-inference-server.fullname" . }} -o jsonpath='{.spec.ports[0].nodePort}')
+  $ curl "${TRITON_IP}:${TRITON_HTTP_PORT}/v2"
+
+{{- end }}
+
